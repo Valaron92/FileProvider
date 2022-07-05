@@ -128,8 +128,8 @@ public final class OneDriveFileObject: FileObject {
             url.appendPathComponent(modifier!)
             print("url3")
         case (false, false, false):
-            url.appendPathComponent(rpath + ":")
-            
+            //url.appendPathComponent(rpath + ":")
+            url.appendPathComponent(rpath)
             url.appendPathComponent(modifier!)
             print("url4")
         }
@@ -195,7 +195,8 @@ extension OneDriveFileProvider {
         progress.setUserInfoObject(operation, forKey: .fileProvderOperationTypeKey)
         progress.kind = .file
         progress.setUserInfoObject(Progress.FileOperationKind.downloading, forKey: .fileOperationKindKey)
-        
+        print(targetPath)
+        print("targetPath")
         let createURL = self.url(of: targetPath, modifier: "createUploadSession")
         var createRequest = URLRequest(url: createURL)
         createRequest.httpMethod = "POST"

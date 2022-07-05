@@ -108,7 +108,7 @@ public final class OneDriveFileObject: FileObject {
         } else if isId {
             url.appendPathComponent("items")
         } else if isAppFolder {
-            url.appendPathComponent("root")
+            url.appendPathComponent("special")
         } else {
             url.appendPathComponent("root:")
         }

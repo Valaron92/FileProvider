@@ -98,6 +98,8 @@ public final class OneDriveFileObject: FileObject {
         let isId = path.hasPrefix("id:")
         var rpath: String = path.replacingOccurrences(of: "id:", with: "", options: .anchored)
         let isAppFolder = path.hasPrefix("approot")
+        print(isAppFolder)
+        print(path)
         //url.appendPathComponent("v1.0")
         url.appendPathComponent(route.drivePath)
         

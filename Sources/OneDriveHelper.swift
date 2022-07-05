@@ -207,6 +207,8 @@ extension OneDriveFileProvider {
         } else {
             createRequest.httpBody = Data(jsonDictionary: ["item": ["@microsoft.graph.conflictBehavior": "fail"] as NSDictionary])
         }
+        print("createRequest")
+        print(createRequest)
         let createSessionTask = session.dataTask(with: createRequest) { (data, response, error) in
             if let error = error {
                 completionHandler?(error)

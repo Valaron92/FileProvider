@@ -128,8 +128,8 @@ public final class OneDriveFileObject: FileObject {
             url.appendPathComponent(modifier!)
             print("url3")
         case (false, false, false):
-            //url.appendPathComponent(rpath + ":")
-            url.appendPathComponent(rpath)
+            url.appendPathComponent(rpath + ":")
+            //url.appendPathComponent(rpath)
             url.appendPathComponent(modifier!)
             print("url4")
         }

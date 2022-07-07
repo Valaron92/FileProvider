@@ -30,7 +30,7 @@ class FilesProviderTests: XCTestCase, FileProviderDelegate {
         testArchiving(provider)
         testOperations(provider)
     }
-    
+    /*
     func testWebDav() {
         guard let urlStr = ProcessInfo.processInfo.environment["webdav_url"] else { return }
         let url = URL(string: urlStr)!
@@ -47,7 +47,7 @@ class FilesProviderTests: XCTestCase, FileProviderDelegate {
             self.testRemoveFile(provider, filePath: self.testFolderName)
         }
         testOperations(provider)
-    }
+    }*/
     
     func testDropbox() {
         guard let pass = ProcessInfo.processInfo.environment["dropbox_token"] else {
@@ -63,7 +63,7 @@ class FilesProviderTests: XCTestCase, FileProviderDelegate {
         testBasic(provider)
         testOperations(provider)
     }
-    
+    /*
     func testFTPPassive() {
         /*
         guard let urlStr = ProcessInfo.processInfo.environment["ftp_url"] else { return }
@@ -86,13 +86,13 @@ class FilesProviderTests: XCTestCase, FileProviderDelegate {
             self.testRemoveFile(provider, filePath: self.testFolderName)
         }
         testOperations(provider)
-    }
+    }*/
     
     func testOneDrive() {
-        guard let pass = ProcessInfo.processInfo.environment["onedrive_token"] else {
+        guard let pass = ProcessInfo.processInfo.environment["jh"] else {
             return
         }
-        let cred = URLCredential(user: "testuser", password: pass, persistence: .forSession)
+        let cred = URLCredential(user: "fjhkl", password: pass, persistence: .forSession)
         let provider = OneDriveFileProvider(credential: cred)
         provider.delegate = self
         testBasic(provider)

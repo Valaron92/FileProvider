@@ -212,6 +212,7 @@ extension OneDriveFileProvider {
         print(createRequest.httpBody as Any)
         print(createRequest.httpMethod as Any)
         print(createRequest.httpBody as Data?)
+        
         let createSessionTask = session.dataTask(with: createRequest) { (data, response, error) in
             if let error = error {
                 completionHandler?(error)

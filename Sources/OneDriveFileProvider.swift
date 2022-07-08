@@ -231,6 +231,8 @@ open class OneDriveFileProvider: HTTPFileProvider, FileProviderSharing {
      */
     open override func attributesOfItem(path: String, completionHandler: @escaping (_ attributes: FileObject?, _ error: Error?) -> Void) {
         var request = URLRequest(url: url(of: path))
+        print("request.url")
+        print(request.url)
         request.httpMethod = "GET"
         request.setValue(authentication: self.credential, with: .oAuth2)
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in

@@ -98,8 +98,8 @@ public final class OneDriveFileObject: FileObject {
         let isId = path.hasPrefix("id:")
         var rpath: String = path.replacingOccurrences(of: "id:", with: "", options: .anchored)
         let isAppFolder = path.hasPrefix("/approot")
+        print("isAppFolder")
         print(isAppFolder)
-        print(path)
         //url.appendPathComponent("v1.0")
         url.appendPathComponent(route.drivePath)
         print(url)
@@ -122,27 +122,21 @@ public final class OneDriveFileObject: FileObject {
             break
         case (false, true, _):
             url.appendPathComponent(modifier!)
-            print("url2")
         case (false, false, true):
             url.appendPathComponent(rpath)
             url.appendPathComponent(modifier!)
-            print("url3")
         case (false, false, false):
             url.appendPathComponent(rpath + ":")
             //url.appendPathComponent(rpath)
             url.appendPathComponent(modifier!)
-            print("url4")
         }
-        print(url)
         return url
     }
     
     static func relativePathOf(url: URL, baseURL: URL?, route: OneDriveFileProvider.Route) -> String {
         let base = baseURL?.appendingPathComponent(route.drivePath).path ?? ""
-        
         let crudePath = url.path.replacingOccurrences(of: base, with: "", options: .anchored)
             .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        
         switch crudePath {
         case hasPrefix("items/"):
             let components = crudePath.components(separatedBy: "/")
@@ -195,8 +189,6 @@ extension OneDriveFileProvider {
         progress.setUserInfoObject(operation, forKey: .fileProvderOperationTypeKey)
         progress.kind = .file
         progress.setUserInfoObject(Progress.FileOperationKind.downloading, forKey: .fileOperationKindKey)
-        print(targetPath)
-        print("targetPath")
         let createURL = self.url(of: targetPath, modifier: "createUploadSession")
         var createRequest = URLRequest(url: createURL)
         createRequest.httpMethod = "POST"
@@ -207,13 +199,6 @@ extension OneDriveFileProvider {
         } else {
             createRequest.httpBody = Data(jsonDictionary: ["item": ["@microsoft.graph.conflictBehavior": "fail"] as NSDictionary])
         }
-        print("createRequest")
-        print(createRequest)
-        print(createRequest.httpBody as Any)
-        print(createRequest.httpMethod as Any)
-        print(createRequest.httpBody as Data?)
-        print(createRequest.httpBody?.deserializeJSON())
-        
         let createSessionTask = session.dataTask(with: createRequest) { (data, response, error) in
             if let error = error {
                 completionHandler?(error)
